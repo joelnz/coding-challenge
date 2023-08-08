@@ -6,12 +6,13 @@ import {
   MeshBuilder,
   Scene,
   Vector3,
-} from "@babylonjs/core";
+  SceneLoader,
+} from '@babylonjs/core';
+import '@babylonjs/loaders/glTF';
 
 export const onSceneReady = (scene: Scene) => {
   scene.clearColor = Color4.FromHexString("#010b19");
-  const camera = new FreeCamera("camera1", new Vector3(0, 5, -10), scene);
-
+  const camera = new FreeCamera('camera', new Vector3(0, 0, -8), scene);
   camera.setTarget(Vector3.Zero());
 
   const canvas = scene.getEngine().getRenderingCanvas();
@@ -21,10 +22,38 @@ export const onSceneReady = (scene: Scene) => {
   light.groundColor = Color3.White();
   light.intensity = 0.7;
 
-  //TODO: delete this once you import your models
-  const sphere = MeshBuilder.CreateSphere(
-    "sphere",
-    { diameter: 2, segments: 32 },
-    scene
+  // Load Sun model
+  SceneLoader.ImportMesh(
+    '',
+    'models/',
+    'Sun.glb',
+    scene,
+    (meshes) => {
+      meshes.forEach((mesh) => {
+        mesh.position = new Vector3(0, 0, 0);
+        mesh.scaling = new Vector3(2, 2, 2);
+      });
+    },
+    null,
+    (error) => {
+      console.error('An error occurred:', error);
+    },
+  );
+
+  SceneLoader.ImportMesh(
+    '',
+    'models/',
+    'Earth.glb',
+    scene,
+    (meshes) => {
+      meshes.forEach((mesh) => {
+        mesh.position = new Vector3(4, 0, 0);
+        mesh.scaling = new Vector3(0.02, 0.02, 0.02);
+      });
+    },
+    null,
+    (error) => {
+      console.error('An error occurred:', error);
+    },
   );
 };
