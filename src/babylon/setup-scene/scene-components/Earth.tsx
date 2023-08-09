@@ -40,13 +40,13 @@ export const Earth = (scene: Scene) => {
           Animation.ANIMATIONLOOPMODE_CYCLE,
         );
         // Animation keys
-        const keys = [];
-        for (let frame = 0; frame <= 360; frame += 10) {
-          const angle = frame * (Math.PI / 180);
-          const x = EARTHS_DISTANCE_FROM_SUN_IN_UNITS * Math.cos(angle);
-          const z = EARTHS_DISTANCE_FROM_SUN_IN_UNITS * Math.sin(angle);
-          keys.push({ frame, value: new Vector3(x, 0, z) });
-        }
+     const keys = [];
+for (let frame = 0; frame <= 360; frame += 1) { 
+  const angle = (frame * Math.PI * 2) / 360; 
+  const x = EARTHS_DISTANCE_FROM_SUN_IN_UNITS * Math.cos(angle);
+  const z = EARTHS_DISTANCE_FROM_SUN_IN_UNITS * Math.sin(angle);
+  keys.push({ frame, value: new Vector3(x, 0, z) });
+}
         orbitAnimation.setKeys(keys);
         // Add orbit animation to the mesh and the animation group
         mesh.animations.push(orbitAnimation);
