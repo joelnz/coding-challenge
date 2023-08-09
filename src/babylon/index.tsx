@@ -51,7 +51,7 @@ function Babylon({ setScene }: BabylonProps) {
         width: '100%',
         height: '100%',
         outline: 'none',
-        borderRadius: '8px',
+        borderRadius: '0px',
       }}
       ref={reactCanvas}
     />

@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <button className="DownloadBtn" onClick={downloadScene}>
-        Download Scene
+        Download Scene as .glb
       </button>
       <Babylon setScene={setScene}></Babylon>
     </div>
