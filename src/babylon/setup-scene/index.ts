@@ -39,4 +39,10 @@ export const onSceneReady = (scene: Scene) => {
   Skybox(scene);
   Sun(scene);
   Earth(scene);
+
+  scene.registerBeforeRender(() => {
+    // Slowly orbit camera
+    const CameraOrbitSpeed = 0.00015;
+    camera.alpha += CameraOrbitSpeed;
+  });
 };
