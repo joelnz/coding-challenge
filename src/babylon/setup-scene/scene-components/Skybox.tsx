@@ -11,7 +11,7 @@ export const Skybox = (scene: Scene) => {
   // Load Skybox
   const skyboxTexturePath = 'textures/';
   const skyboxTextureExtension = '.jpg';
-  const skybox = MeshBuilder.CreateBox('skyBox', { size: 1000.0 }, scene);
+  const skybox = MeshBuilder.CreateBox('skyBox', { size: 100.0 }, scene);
   const skyboxMaterial = new StandardMaterial('skyBox', scene);
   skyboxMaterial.reflectionTexture = new CubeTexture(
     skyboxTexturePath,
