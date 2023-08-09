@@ -3,10 +3,13 @@ import {
   Animation,
   Color3,
   Color4,
+  CubeTexture,
   FreeCamera,
   HemisphericLight,
   MeshBuilder,
   Scene,
+  StandardMaterial,
+  Texture,
   Vector3,
   SceneLoader,
 } from '@babylonjs/core';
@@ -16,7 +19,7 @@ const SUN_SCALE_FACTOR = 1.41; // Scale factor for the Sun to fit a 2x2x2 unit b
 const EARTH_SCALE_FACTOR = 0.0317; // Scale factor for the Earth to fit a 1x1x1 unit box
 
 export const onSceneReady = (scene: Scene) => {
-  scene.clearColor = Color4.FromHexString('#010b19');
+  scene.clearColor = Color4.FromHexString('#ffffff');
   const camera = new FreeCamera('camera', new Vector3(0, 0, -7), scene);
   camera.setTarget(Vector3.Zero());
 
@@ -26,6 +29,31 @@ export const onSceneReady = (scene: Scene) => {
   const light = new HemisphericLight('light', new Vector3(0, 1, 0), scene);
   light.groundColor = Color3.White();
   light.intensity = 0.7;
+
+  // Skybox
+  const skyboxTexturePath = 'textures/';
+  const skyboxTextureExtension = '.jpg';
+  const skybox = MeshBuilder.CreateBox('skyBox', { size: 1000.0 }, scene);
+  const skyboxMaterial = new StandardMaterial('skyBox', scene);
+  skyboxMaterial.reflectionTexture = new CubeTexture(
+    skyboxTexturePath,
+    scene,
+    [
+      'px' + skyboxTextureExtension,
+      'py' + skyboxTextureExtension,
+      'pz' + skyboxTextureExtension,
+      'nx' + skyboxTextureExtension,
+      'ny' + skyboxTextureExtension,
+      'nz' + skyboxTextureExtension,
+    ],
+  );
+  skyboxMaterial.reflectionTexture.level = 0.3;
+  skyboxMaterial.backFaceCulling = false;
+  skyboxMaterial.reflectionTexture.coordinatesMode = Texture.SKYBOX_MODE;
+  skyboxMaterial.diffuseColor = new Color3(0, 0, 0);
+  skyboxMaterial.specularColor = new Color3(0, 0, 0);
+  skyboxMaterial.disableLighting = true;
+  skybox.material = skyboxMaterial;
 
   // Load Sun model
   SceneLoader.ImportMesh(
