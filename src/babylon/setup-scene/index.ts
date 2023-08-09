@@ -27,6 +27,8 @@ export const onSceneReady = (scene: Scene) => {
   );
   camera.attachControl(canvas, true);
   camera.setTarget(Vector3.Zero());
+  camera.lowerRadiusLimit = 3; 
+  camera.upperRadiusLimit = 50;
 
   // Create PointLight at the position of sun
   const light = new PointLight('light', new Vector3(0, 0, 0), scene);
