@@ -1,6 +1,6 @@
 # Coding Challenge - Babylon.js Earth & Sun Animation 
 
-![Description of the Image](./public/images/project_image.jpg)
+![Description of the Image](./public/project_image.jpg)
 
 ## Overview
 This project simulates Earth's orbit around the Sun, complete with an asteroid shower. It was developed using Babylon.js and React.
