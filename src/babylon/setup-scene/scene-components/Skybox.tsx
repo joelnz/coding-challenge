@@ -8,6 +8,7 @@ import {
 } from '@babylonjs/core';
 
 export const Skybox = (scene: Scene) => {
+  // Load Skybox
   const skyboxTexturePath = 'textures/';
   const skyboxTextureExtension = '.jpg';
   const skybox = MeshBuilder.CreateBox('skyBox', { size: 1000.0 }, scene);

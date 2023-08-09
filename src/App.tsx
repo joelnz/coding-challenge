@@ -3,7 +3,6 @@ import Babylon from './babylon';
 import { GLTF2Export } from '@babylonjs/serializers/glTF';
 import { Scene } from '@babylonjs/core';
 
-
 import './App.css';
 
 function App() {
