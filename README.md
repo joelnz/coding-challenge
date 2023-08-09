@@ -5,6 +5,8 @@
 ## Overview
 This project simulates Earth's orbit around the Sun, complete with an asteroid shower. It was developed using Babylon.js and React.
 
+[Demo link](https://joelnz.github.io/coding-challenge/)
+
 ## Features
 - **Download Scene**: Users can download the scene as a .glb model.
 - **Unit Sizes**: Sun is scaled to fit 2x2x2 box and Earth is scaled to fit 1x1x1 box
@@ -42,3 +44,6 @@ animationGroup.addTargetedAnimation(rotationAnimation, mesh);
 2. Run `npm install`
 3. Run `npm start`
 4. Navigate to `http://localhost:3000`
+
+## Conclusion
+Learned a lot in this challenge. Given more time, I would add a loading screen for smoother online viewing of the large planet models. Further optimizations could involve compressing and optimizing the model files.
