@@ -1,6 +1,7 @@
 import {
   ArcRotateCamera,
   Color3,
+  Color4,
   PointLight,
   Scene,
   Vector3,
@@ -12,6 +13,7 @@ import Skybox from './scene-components/Skybox';
 import Sun from './scene-components/Sun';
 
 export const onSceneReady = (scene: Scene) => {
+  scene.clearColor = new Color4(0, 0, 0, 1);
   // Set up canvas
   const canvas = scene.getEngine().getRenderingCanvas();
   // Set up camera
