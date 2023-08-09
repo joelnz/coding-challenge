@@ -22,7 +22,9 @@ function App() {
           Download Scene as .glb<i className="material-icons">download</i>
       </button>
       <Babylon setScene={setScene}></Babylon>
+      <footer>Left-click & drag to rotate / scroll to zoom / middle-click to pan</footer>
     </div>
+
   );
 }
 

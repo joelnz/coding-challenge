@@ -11,26 +11,38 @@
 .DownloadBtn {
   position: absolute;
   top: 20px;
-  right: 20px;
   font-size: 18px;
   border: 0;
   outline: none;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 16px;
   padding: 10px 25px;
   border-radius: 100px;
-  transition: .4s;
+  transition: 0.4s;
   color: gray;
   background: #222;
 }
 
 .DownloadBtn:hover {
- background: #333;
- color: gray;
-
+  background: #333;
+  color: gray;
 }
 
-.material-icons{
+.material-icons {
   font-size: 18px;
   float: right;
   margin-left: 15px;
+}
+
+footer {
+  color: #444;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
 }
