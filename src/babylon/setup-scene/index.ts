@@ -12,9 +12,12 @@ import {
 } from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 
+const SUN_SCALE_FACTOR = 1.41; // Scale factor for the Sun to fit a 2x2x2 unit box
+const EARTH_SCALE_FACTOR = 0.0317; // Scale factor for the Earth to fit a 1x1x1 unit box
+
 export const onSceneReady = (scene: Scene) => {
   scene.clearColor = Color4.FromHexString('#010b19');
-  const camera = new FreeCamera('camera', new Vector3(0, 0, -8), scene);
+  const camera = new FreeCamera('camera', new Vector3(0, 0, -7), scene);
   camera.setTarget(Vector3.Zero());
 
   const canvas = scene.getEngine().getRenderingCanvas();
@@ -33,7 +36,11 @@ export const onSceneReady = (scene: Scene) => {
     (meshes) => {
       meshes.forEach((mesh) => {
         mesh.position = new Vector3(0, 0, 0);
-        mesh.scaling = new Vector3(2, 2, 2);
+        mesh.scaling = new Vector3(
+          SUN_SCALE_FACTOR,
+          SUN_SCALE_FACTOR,
+          SUN_SCALE_FACTOR,
+        );
       });
     },
     null,
@@ -52,8 +59,11 @@ export const onSceneReady = (scene: Scene) => {
       // Create an animation group
       const animationGroup = new AnimationGroup('EarthOrbit');
       meshes.forEach((mesh) => {
-        mesh.position = new Vector3(4, 0, 0);
-        mesh.scaling = new Vector3(0.02, 0.02, 0.02);
+        mesh.scaling = new Vector3(
+          EARTH_SCALE_FACTOR,
+          EARTH_SCALE_FACTOR,
+          EARTH_SCALE_FACTOR,
+        );
         // Create Earth's orbit animation
         const orbitAnimation = new Animation(
           'orbit',
@@ -62,7 +72,6 @@ export const onSceneReady = (scene: Scene) => {
           Animation.ANIMATIONTYPE_VECTOR3,
           Animation.ANIMATIONLOOPMODE_CYCLE,
         );
-
         // Animation keys
         const keys = [];
         for (let frame = 0; frame <= 360; frame += 10) {
@@ -72,12 +81,10 @@ export const onSceneReady = (scene: Scene) => {
           keys.push({ frame, value: new Vector3(x, 0, z) });
         }
         orbitAnimation.setKeys(keys);
-
         // Add orbit animation to the mesh and the animation group
         mesh.animations.push(orbitAnimation);
         animationGroup.addTargetedAnimation(orbitAnimation, mesh);
       });
-      
       // Play animation group in a loop
       animationGroup.play(true);
     },
