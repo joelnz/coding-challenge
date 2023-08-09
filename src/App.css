@@ -10,14 +10,27 @@
 
 .DownloadBtn {
   position: absolute;
-  bottom: 20px;
+  top: 20px;
   right: 20px;
   font-size: 18px;
-  background: #333;
   border: 0;
   outline: none;
-  color: gray;
   font-size: 16px;
   padding: 10px 25px;
   border-radius: 100px;
+  transition: .4s;
+  color: gray;
+  background: #222;
+}
+
+.DownloadBtn:hover {
+ background: #333;
+ color: gray;
+
+}
+
+.material-icons{
+  font-size: 18px;
+  float: right;
+  margin-left: 15px;
 }
