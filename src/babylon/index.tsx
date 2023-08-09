@@ -1,8 +1,12 @@
-import { useEffect, useRef } from "react";
-import { Engine, Scene } from "@babylonjs/core";
-import { onSceneReady } from "./setup-scene";
+import { useEffect, useRef } from 'react';
+import { Engine, Scene } from '@babylonjs/core';
+import { onSceneReady } from './setup-scene';
 
-function Babylon() {
+type BabylonProps = {
+  setScene: (scene: Scene | null) => void;
+};
+
+function Babylon({ setScene }: BabylonProps) {
   const reactCanvas = useRef(null);
 
   useEffect(() => {
@@ -12,6 +16,8 @@ function Babylon() {
 
     const engine = new Engine(canvas, true);
     const scene = new Scene(engine);
+    setScene(scene); // Pass scene back to parent
+
     if (scene.isReady()) {
       onSceneReady(scene);
     } else {
@@ -27,25 +33,25 @@ function Babylon() {
     };
 
     if (window) {
-      window.addEventListener("resize", resize);
+      window.addEventListener('resize', resize);
     }
 
     return () => {
       scene.getEngine().dispose();
 
       if (window) {
-        window.removeEventListener("resize", resize);
+        window.removeEventListener('resize', resize);
       }
     };
-  }, []);
+  }, [setScene]);
 
   return (
     <canvas
       style={{
-        width: "100%",
-        height: "100%",
-        outline: "none",
-        borderRadius: "8px"
+        width: '100%',
+        height: '100%',
+        outline: 'none',
+        borderRadius: '8px',
       }}
       ref={reactCanvas}
     />

@@ -1,11 +1,27 @@
-import Babylon from "./babylon";
-import "./App.css";
+import React, { useState } from 'react';
+import Babylon from './babylon';
+import { Scene } from '@babylonjs/core';
+import { GLTF2Export } from '@babylonjs/serializers/glTF';
+
+import './App.css';
 
 function App() {
+  const [scene, setScene] = useState<Scene | null>(null);
+
+  const downloadScene = () => {
+    if (scene) {
+      GLTF2Export.GLBAsync(scene, 'scene').then((glb) => {
+        glb.downloadFiles();
+      });
+    }
+  };
+
   return (
     <div className="App">
-      <button className="DownloadBtn">Download Scene</button>
-      <Babylon></Babylon>
+      <button className="DownloadBtn" onClick={downloadScene}>
+        Download Scene
+      </button>
+      <Babylon setScene={setScene}></Babylon>
     </div>
   );
 }
