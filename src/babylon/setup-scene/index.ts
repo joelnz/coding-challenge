@@ -4,7 +4,7 @@ import {
   Color3,
   Color4,
   CubeTexture,
-  FreeCamera,
+  ArcRotateCamera,
   HemisphericLight,
   MeshBuilder,
   Scene,
@@ -22,7 +22,7 @@ import Sun from './scene-components/Sun'
 
 export const onSceneReady = (scene: Scene) => {
   scene.clearColor = Color4.FromHexString('#ffffff');
-  const camera = new FreeCamera('camera', new Vector3(0, 0, -7), scene);
+  const camera = new ArcRotateCamera('camera', -Math.PI / 2, Math.PI / 2, 7, new Vector3(0, 0, 0), scene);
   camera.setTarget(Vector3.Zero());
 
   const canvas = scene.getEngine().getRenderingCanvas();
