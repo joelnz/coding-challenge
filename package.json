@@ -4,11 +4,7 @@
   "private": true,
   "dependencies": {
     "@babylonjs/core": "^6.16.0",
-    "@babylonjs/gui": "^6.16.0",
-    "@babylonjs/gui-editor": "^6.16.0",
-    "@babylonjs/inspector": "^6.16.0",
     "@babylonjs/loaders": "^6.15.0",
-    "@babylonjs/materials": "^6.16.0",
     "@babylonjs/serializers": "^6.15.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
